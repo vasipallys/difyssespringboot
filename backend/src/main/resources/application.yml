@@ -1,0 +1,36 @@
+server:
+  port: 8080
+  netty:
+    connection-timeout: 10s
+
+# Dify AI Configuration
+dify:
+  base-url: ${DIFY_BASE_URL:https://api.dify.ai/v1}
+  api-key: ${DIFY_API_KEY:your-api-key-here}
+  timeout-seconds: ${DIFY_TIMEOUT_SECONDS:120}
+
+# CORS Configuration
+cors:
+  allowed-origins: ${CORS_ORIGINS:http://localhost:3000}
+
+# Rate limiting (per user, sliding window)
+rate-limit:
+  max-requests: ${RATE_LIMIT_MAX_REQUESTS:10}
+  window-seconds: ${RATE_LIMIT_WINDOW_SECONDS:60}
+
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+# Logging
+logging:
+  level:
+    com.example.dify: INFO
+    reactor.netty: INFO
